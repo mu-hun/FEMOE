@@ -1,0 +1,10 @@
+{{ if .IsPage }}
+<meta property="og:type" content="article" />
+<meta property="og:title" content="{{ .Title }}" />
+<meta property="og:description" content="{{ .Params.description | default .Site.Author.name }}" />
+  {{ if .Params.image }}
+	<meta property="og:image" content="{{ .Params.image }}" />
+  {{ else }}
+    <meta name="twitter:image" content="{{ .Site.BaseURL }}images/avatar.jpg" />
+  {{ end }}
+{{ end }}

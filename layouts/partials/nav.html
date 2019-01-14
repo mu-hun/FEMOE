@@ -1,0 +1,40 @@
+{{ $currentPage := . }}
+<div id="left-side">
+<nav class="menu">
+	<a href="{{ relURL "/" }}">
+		<h1 id="nav-site-title">{{ .Site.Title }}</h1>
+	</a>
+	<div class="sub">
+		{{ if .IsPage }}
+		<a href="{{ relURL "/" }}">
+			<- | {{end }} {{ range .Site.Menus.main }} <a class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}active{{end}}"
+			 href="{{.URL}}">
+				{{ .Name }}
+		</a>
+		{{ end }}
+	</div>
+</nav>
+{{ if eq .Section "posts" }}
+<aside class="toc">
+    <details>
+    <summary style="cursor: pointer;">
+		<span class="side-header">목차</span>
+    </summary>
+    {{- range $headers := findRE "<h[2-4].*?>(.|\n])+?</h[2-4]>" .Content -}}
+        {{- $header := . -}}
+        {{- $href := delimit (slice ($.Page.File.LogicalName) ($header | plainify | htmlUnescape | anchorize)) "#" | string -}}
+        {{- range findRE "[2-4]" . 1 -}}
+            {{- $next_heading := (int .) -}}
+            {{- if gt $next_heading ($.Scratch.Get "last_level") -}}
+                <ul class="toc-h{{ . }}">
+            {{- else if lt $next_heading ($.Scratch.Get "last_level") -}}
+                </ul>
+            {{- end -}}
+            <li><a href="{{ relref $.Page $href }}">{{- $header | plainify | htmlUnescape -}}</a></li>
+            {{ $.Scratch.Set "last_level" $next_heading }}
+        {{- end -}}
+    {{- end -}}
+	</details>
+</aside>
+{{ end }}
+</div>

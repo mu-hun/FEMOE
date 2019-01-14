@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="{{ .Site.LanguageCode | default "ko" }}">
+
+<head>
+	<title>{{ .Site.Title }}</title>
+	{{ partial "meta" . }}
+	{{ if .Site.Params.enableTwitterCard }}
+	{{ partial "twitter-cards.html" . }}
+	{{ end }}
+	{{ if .Site.Params.emableOpenGraph }}
+	{{ partial "opengraph.html" . }}
+	{{ end }}
+	{{ partial "header_includes" . -}}
+</head>
+
+<body>
+	{{ if .IsHome }}
+		{{ range $index, $page := where .Site.RegularPages "Section" "in" .Site.Params.mainSections }}
+		{{if eq $index 0}}
+		{{ if .Params.image }}
+		<a href="{{ .Permalink }}" title="{{ .Title }}">
+			<header class="contain-bg main" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{ .Params.image }}');">
+		{{ else }}
+			<header class="no-bg">
+		{{ end }}
+			<div class="title">
+				<h1>{{ .Title | markdownify }}</h1>
+				<ul style="list-style-type: none; padding:0; margin-bottom:0.7143em;">
+					<li><time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "1월 2일, 2006년"}}</time> / 🕑 {{ .ReadingTime }}분 내로 읽음</li>
+					<li style="padding-top: 4px">{{ with .Params.description }} {{ . | markdownify }} {{ end }} </li>
+				</ul>
+			</div>
+			</header>
+		</a>
+		{{ end }}
+	{{ end }}
+	{{ else }}
+	{{ if .Params.image }}
+	<header class="contain-bg" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{ $.Params.image }}')">
+	{{ else }}
+		<header class="no-bg">
+	{{ end }}
+		<a class="mobile" href="{{ relURL "/" }}">
+			<span class="mdil mdi-light mdil-chevron-left"></span>
+		</a>
+		<div class="title">
+			<h1>{{ .Title | markdownify }}</h1>
+			<ul style="list-style-type: none; padding:0; margin-bottom:0.7143em;">
+				<li><time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "1월 2일, 2006년"}}</time> / 🕑 {{ .ReadingTime }}분 내로 읽음 </li>
+				<li style="padding-top: 4px">{{ with .Params.description }} {{ . | markdownify }} {{ end }} </li>
+			</ul>
+		</div>
+		</header>
+	{{ end }}
+
+		{{ partial "mobile.html" . }}
+				  <main>
+		
+		<div id="container">
+			<main>
+				{{ partial "nav" . }}

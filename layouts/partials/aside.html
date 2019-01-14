@@ -1,0 +1,33 @@
+<aside>
+    <ul>
+        <li>
+			<time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "1월 2일, 2006년"}}</time> /
+			<span> 🕑 {{ .ReadingTime }}분 내로 읽음</span>
+        </li>
+        
+        {{ if .Params.categories }}
+        <li>
+            분류 : 
+            <em>
+                {{ range $i, $c := .Params.categories }}
+                    {{ if $i }}, {{ end }}
+                    <a href="/categories/{{$c | urlize }}/"> {{ $c }} </a>
+                {{ end }}
+            </em>
+        <!-- </li> -->
+        {{ end }}
+
+        {{ if .Params.tags }}
+        <!-- <li> -->
+            / 태그 :
+            <em>
+                {{ range $i, $t := .Params.tags }}
+                    {{ if $i }}, {{ end }}
+                    <a href="/tags/{{$t | urlize }}/">#{{ $t }} </a>
+                {{ end }}
+            </em>
+        </li>
+        {{ end }}
+	<!-- </li> -->
+    </ul>
+</aside>

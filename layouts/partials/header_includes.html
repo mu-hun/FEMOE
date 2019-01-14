@@ -1,0 +1,19 @@
+{{ $style := slice (resources.Get "css/normalize.css") (resources.Get "css/styles.css") | resources.Concat "bundle.css" | minify | fingerprint }}
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gshn/fonts/NanumBarunpen/fonts.css">
+<link rel="stylesheet" href="https://cdn.frontend.moe/fonts/FiraCode/FiraCodeR.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Templarian/MaterialDesignLight-Webfont/css/materialdesignicons-light.min.css" />
+{{ if in (.Site.BaseURL | string) "localhost" }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}"></script>
+{{ end }}
+{{ $script := resources.Get "js/scripts.js" | minify | fingerprint}}
+
+<script type="text/javascript" src="{{ $script.Permalink }}" async></script>
+<link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" media="screen" />
+{{ if .Site.Params.enableRSS }}
+<link href="{{ .Site.RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+{{ end }}
+<!-- AddToAny BEGIN -->
+<!-- <script async src="https://static.addtoany.com/menu/page.js"></script> -->
+<!-- AddToAny END -->

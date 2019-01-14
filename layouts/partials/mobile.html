@@ -1,0 +1,85 @@
+<div class="bottom-app-bar">
+	<button class="bottom-app-bar__fab bottom-app-bar__fab--center-cut btn-floating btn-large">
+		<span class="mdil mdil-chevron-up bottom-app-bar__navigation-icon black-stroke"></span>
+	</button>
+
+	<div class="bottom-app-bar__row">
+		<section class="bottom-app-bar__section bottom-app-bar__section--align-start">
+			<span class="mdil mdil-menu bottom-app-bar__navigation-icon whilte-stroke"></span>
+			<a class="a2a_dd" href="https://www.addtoany.com/share">
+				<span class="mdil mdil-link-variant bottom-app-bar__action-item whilte-stroke">
+			</a>
+			</span>
+		</section>
+	</div>
+</div>
+
+<div class="bottom-app-drawer is-hidden">
+	<section class="bottom-app-drawer-header">
+		<div class="bottom-app-drawer-header-text">
+			<h6>{{ .Site.Title }}</h6>
+			{{ with .Site.Params.tagline }}
+    			<p>{{ . | markdownify }}</p>
+			{{ end }}
+		</div>
+	</section>
+	<section class="bottom-app-drawer-menu">
+		{{ if .IsPage }}
+		<div class="bottom-app-drawer-item bottom-app-drawer-item-select">
+			<span class="bottom-app-drawer-item-text">{{ .Title }}</span>
+		</div>
+		{{ end }}
+		{{ $currentPage := . }}
+		{{ range .Site.Menus.main }}
+		<a class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}active{{end}}" href="{{.URL}}">
+			<div class="bottom-app-drawer-item">
+    			<span class="bottom-app-drawer-item-text">{{ .Name }}</span>
+			</div>
+		</a>
+		<!-- 3개 요소 이상 지원하기-->
+		{{ end }}
+	</section>
+	<script>
+		///const main = document.querySelector('main')
+		const bottom_app_bar = document.querySelector('.bottom-app-bar')
+		const bottom_app_bar_menu = document.querySelector('.mdil-menu')
+		const bottom_app_drawer = document.querySelector('.bottom-app-drawer')
+		const bottom_app_bar_fab = document.querySelector('.bottom-app-bar__fab')
+
+		let preScroll = window.pageYOffset;
+		let currentScroll = null;
+		window.onscroll = function() {
+			currentScroll = window.pageYOffset;
+			if (preScroll > currentScroll) {
+				bottom_app_bar.style.bottom = "0";
+			} else {
+				bottom_app_bar.style.bottom = "-84px";
+			}
+			if (document.querySelector('.is-shadow')) {
+				bottom_app_bar_menu.click()
+			}
+			preScroll = currentScroll;
+		}
+
+		bottom_app_bar_menu.addEventListener('click', function() {
+			bottom_app_drawer.classList.toggle('is-hidden');
+			document.querySelector('main').classList.toggle('is-shadow');
+		});
+
+		// TODO: Add scroll down event to 
+		/*if (document.querySelector('.is-shadow')) {
+			document.querySelector('main').addEventListener('touchestart', function() {
+				bottom_app_bar_menu.click()
+			})
+		}*/
+		bottom_app_bar_fab.addEventListener('click', function scrollToTop() {
+			if (document.documentElement.scrollTop > 0) {
+				window.scrollBy(0, -50);
+				setInterval(scrollToTop(), 10);
+			} else {
+				return
+			}
+		})
+		
+	</script>
+</div>

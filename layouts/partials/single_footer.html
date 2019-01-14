@@ -1,0 +1,20 @@
+{{ if .Site.DisqusShortname }}
+        {{ partial "disqus" . }}
+{{ end }}
+{{ if not .Params.meta }}
+<section class="post-nav">
+    <ul>
+        {{ with .PrevInSection }}
+        <li>
+            <a href="{{.Permalink}}"><i class="mdil mdil-chevron-left"></i> {{ .Title }}</a>
+        </li>
+        {{ end }}
+        {{ with .NextInSection }}
+        <li>
+            <a href="{{.Permalink}}">{{ .Title }} <i class="mdil mdil-chevron-right"></i> </a>
+        </li>
+        {{ end }}
+    </ul>
+</section>
+{{ end }}
+

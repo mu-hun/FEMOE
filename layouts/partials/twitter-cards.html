@@ -1,0 +1,47 @@
+<!-- referance : https://github.com/nodejh/hugo-theme-cactus-plus/blob/master/layouts/partials/twitter-cards.html -->
+{{ if .IsPage }}
+  {{ with .Params.images }}
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image:src" content="{{ index . 0 | absURL }}"/>
+    {{ else }}
+    <meta name="twitter:card" content="summary"/>
+    {{ if .Params.image }}
+      <meta name="twitter:image" content="{{ .Params.image }}" />
+      {{ else }}
+      <meta name="twitter:image" content="{{ .Site.BaseURL }}images/avatar.jpg" />
+    {{ end }}
+  {{ end }}
+  <!-- Twitter Card data -->
+  <meta name="twitter:title" content="{{ .Title }}"/>
+  <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}"/>
+  {{ with .Site.Params.twitter }}
+    <meta name="twitter:site" content="@{{ . }}"/>
+  {{ end }}
+  {{ range .Site.Authors }}
+    {{ with .twitter }}
+      <meta name="twitter:creator" content="@{{ . }}"/>
+    {{ end }}
+  {{ end }}
+  <!-- no post authors, show site author -->
+  {{ if eq (len .Site.Authors) 0 }}
+    <meta name="twitter:creator" content="@{{ .Site.Params.author }}"/>
+  {{ end }}
+
+{{ else }}
+
+  <meta name="twitter:card" content="summary" />
+  {{ with .Site.Params.twitter }}
+    <meta name="twitter:site" content="@{{ . }}"/>
+  {{ end }}
+  {{ with .Site.Params.author }}
+    <meta name="twitter:creator" content="@{{ . }}"/>
+  {{ end }}
+  <meta name="twitter:title" content="{{ .Site.Title }}"/>
+  <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}"/>
+  {{ if .Params.image }}
+    <meta name="twitter:image" content="{{ .Params.image }}" />
+    {{ else }}
+    <meta name="twitter:image" content="{{ .Site.BaseURL }}images/avatar.jpg" />
+  {{ end }}
+{{ end }}
