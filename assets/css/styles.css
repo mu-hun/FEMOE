@@ -177,6 +177,12 @@ aside,
   font-size: 0.9em;
 }
 
+@media only screen and (max-width: 1040px) {
+	#container main article {
+		margin-top: 2rem;
+	}
+}
+
 #container main article p a, #container main article ul li a {
   text-decoration: underline;
 }
@@ -447,11 +453,6 @@ header {
 	width: 100vw;
 	height: 254px;
 	position: relative;
-}
-
-header .contain-bg {
-	background-size: cover;
-	background-repeat: no-repeat;
 }
 
 header.main {
