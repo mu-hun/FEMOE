@@ -1,5 +1,9 @@
 <head>
+	{{ if .IsPage }}
+	<title>{{ .Title }} - {{ .Site.Title }}</title>
+	{{ else }}
 	<title>{{ .Site.Title }}</title>
+	{{end }}
 	{{ partial "meta" . }}
 	{{ if .Site.Params.enableTwitterCard }}
 	{{ partial "twitter-cards.html" . }}
