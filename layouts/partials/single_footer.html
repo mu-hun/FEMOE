@@ -1,7 +1,7 @@
 {{ if .Site.DisqusShortname }}
         {{ partial "disqus" . }}
 {{ end }}
-{{ if not .Params.meta }}
+{{ if eq .Section "posts" }}
 <section class="post-nav">
     <ul>
         {{ with .PrevInSection }}
@@ -17,4 +17,3 @@
     </ul>
 </section>
 {{ end }}
-
