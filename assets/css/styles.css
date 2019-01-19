@@ -479,20 +479,20 @@ header div h1 {
 	margin: 0;
 }
 
-@media only screen and (min-width: 971px) {
-	.mobile {
+@media only screen and (min-width: 1041px) {
+	.mobile-chevron-left {
 		display: none;
 	}
 }
 
-@media only screen and (max-width: 970px) {
-	.mobile {
+@media only screen and (max-width: 1040px) {
+	.mobile-chevron-left {
 		display: inline-block;
 		margin: 1rem;
 	}
 
 	/* TODO 아이콘 명세에 맞게 하기 */
-	.mobile > span {
+	.mobile-chevron-left > span {
 		font-size: 1.7rem;
 		-webkit-text-stroke: 2px white;
 	}
@@ -500,12 +500,9 @@ header div h1 {
 
 /* nav.html */
 
-.toc-h2 {
-	padding: 0;
-}
-
 .toc-h2, .toc-h3, .right-side-li {
 	list-style-type: none;
+	padding-left: 0px;
 }
 
 /* .right-side-li {} */
