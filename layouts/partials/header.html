@@ -22,7 +22,7 @@
 	{{ if .Params.image }}
 	<header id="contain-bg" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{ $.Params.image }}');background-size: cover;
 	background-repeat: no-repeat;
-	background-position: bottom;">
+	background-position: {{ .Params.position | default "center" }} ;">
 	{{ else }}
 	<header class="no-bg">
 	{{ end }}
