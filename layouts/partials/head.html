@@ -1,16 +1,11 @@
 <head>
 	{{ if .IsPage }}
-	<title>{{ .Title }} - {{ .Site.Title }}</title>
+	<title>{{ .Title }} - {{ .Description }} | {{ .Site.Title }}</title>
 	{{ else }}
-	<title>{{ .Site.Title }}</title>
+	<title>{{ .Site.Title }} - {{ .Site.Params.tagline }} | Home</title>
 	{{end }}
+	<link rel="canonical" href="{{ .Permalink | absURL }}"/>
 	{{ partial "meta" . }}
-	{{ if .Site.Params.enableTwitterCard }}
-	{{ partial "twitter-cards.html" . }}
-	{{ end }}
-	{{ if .Site.Params.emableOpenGraph }}
-	{{ partial "opengraph.html" . }}
-	{{ end }}
 	{{ $style := slice (resources.Get "css/normalize.css") (resources.Get "css/styles.css") | resources.Concat "bundle.css" | minify | fingerprint }}
 
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/font-iropke-batang/1.2/font-iropke-batang.css">

@@ -1,6 +1,37 @@
+{{ $subtitle := (.Description | default .Summary) | default .Site.Params.tagline }}
+{{ $img := .Params.image | default ( path.Join .Site.BaseURL "images/avatar.jpg") }}
+{{ $author := .Params.Author | default .Site.Author.name }}
 <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name=”robots” content=”index,follow”>
-  <meta name="description" content="{{ .Params.description | default .Site.Params.tagline }}" />
-  <meta name="author" content="{{ .Params.Author | default .Site.Author.name }}" />
+  <meta name="author" content="{{ $author }}" />
   {{ .Hugo.Generator -}}
+  <meta name="title" content="{{ .Title }} - {{ $subtitle }}">
+  <meta name="type" content="article" />
+  <meta name="description" content="{{ $subtitle }}" />
+  <meta name="image" content="{{ $img }}" />
+  
+  <meta property="og:title" content="{{ .Title }} - {{ $subtitle }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="{{ $subtitle }}" />
+  <meta property="og:image" content="{{ $img }}" />
+  <meta name="twitter:image" content="{{ $img }}" />
+  
+  {{ if .Site.Params.enableTwitterCard }}
+	  {{ if .IsPage }}
+		  <!-- Twitter summary large image must be at least 280x150px -->
+		  <meta name="twitter:card" content="summary_large_image"/>
+	  {{ end }}
+	  <!-- Twitter Card data -->
+	  <meta name="twitter:title" content="{{ .Title }}"/>
+	  <meta name="twitter:description" content="{{ $subtitle }}"/>
+  
+	  {{ with .Site.Params.twitter }}
+		  <meta name="twitter:site" content="@{{ . }}"/>
+	  {{ end }}
+  
+	  <meta name="twitter:creator" content="@{{ $author }}"/>
+	  <meta name="twitter:card" content="summary" />
+	  <meta name="twitter:image" content="{{ $img }}" />
+  {{ end }}
+  

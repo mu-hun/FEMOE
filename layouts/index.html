@@ -9,7 +9,7 @@
 				<a href="{{ .Permalink }}"><img alt="{{ .Title }}" src="{{ $page.Params.image }}" /></a>
 				<!-- <img alt="{{ .Title }}" src="{{ $page.Params.image }}" /> -->
 			{{ end }}
-			<h1><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h1>
+			<h2><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
 			{{ partial "aside" . }}
 			<p> {{ .Description }} </p>
 		</li>
