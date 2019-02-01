@@ -19,7 +19,8 @@ body {
 h1,
 #container main section#list h2,
 #container main section#list h3,
-#container main section#home ul li h2 {
+#container main section#home ul li h2,
+#nav-site-title {
   font-family: "NanumBarunpen", sans-serif;
   font-weight: bold;
   word-break: keep-all;
