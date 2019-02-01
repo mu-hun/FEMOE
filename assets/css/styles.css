@@ -17,13 +17,28 @@ body {
 }
 
 h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+nav,
+aside,
+#container main section#list h2,
+#container main section#list h3,
+#container main section#home ul li h2,
+#container main section#list ul li,
+#nav-site-title {
+	font-family: "NanumBarunpen", sans-serif;
+	word-break: keep-all;
+}
+
+h1,
 #container main section#list h2,
 #container main section#list h3,
 #container main section#home ul li h2,
 #nav-site-title {
-  font-family: "NanumBarunpen", sans-serif;
   font-weight: bold;
-  word-break: keep-all;
   font-size: 2.2rem;
 }
 
@@ -35,9 +50,7 @@ h6,
 nav,
 aside,
 #container main section#list ul li {
-  font-family: "NanumBarunpen", sans-serif;
   font-weight: normal;
-  word-break: keep-all;
 }
 
 #container {
@@ -453,8 +466,14 @@ header {
 	position: relative;
 }
 
+@media only screen and (min-width: 1041px) {
+	header.main {
+		width: 720px;
+	}
+}
+
 header.main {
-	width:720px; margin: 0 auto;
+	margin: 0 auto;
 }
 
 header.no-bg {
