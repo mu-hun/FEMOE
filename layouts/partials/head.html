@@ -1,5 +1,5 @@
 <head>
-	<title>{{ .Title }} - {{ (.Description | default .Summary) | default .Site.Params.tagline }}</title>
+	<title>{{ .Title }} – {{ (.Description | default .Summary) | default .Site.Params.tagline }}</title>
 	<link rel="canonical" href="{{ .Permalink | absURL }}"/>
 	{{ partial "meta" . }}
 	{{ $style := slice (resources.Get "css/normalize.css") (resources.Get "css/styles.css") | resources.Concat "bundle.css" | minify | fingerprint }}
