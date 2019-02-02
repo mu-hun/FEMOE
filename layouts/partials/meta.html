@@ -1,4 +1,4 @@
-{{ $subtitle := (.Description | default .Summary) | default .Site.Params.tagline }}
+{{ $subtitle := .Summary | default .Site.Params.tagline }}
 {{ $img := .Params.image | default ( path.Join .Site.BaseURL "images/avatar.jpg") }}
 {{ $author := .Params.Author | default .Site.Author.name }}
 <meta charset="utf-8" />
