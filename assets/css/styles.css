@@ -467,33 +467,50 @@ header {
 }
 
 @media only screen and (min-width: 1041px) {
-	header.main {
+	a.main > header {
 		width: 720px;
+		margin: 0 auto;
 	}
 }
 
-header.main {
-	margin: 0 auto;
+header.contain-bg {
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 header.no-bg {
 	background: linear-gradient(141deg, #9fb8ad 0%, #606c88 51%, #3f4c6b 75%);
 }
 
-header div {
+header > div.title {
 	color: white;
 	position: absolute;
-	width: 700px;
-	margin-left: auto;
-	margin-right: auto;
+	max-width: 700px;
 	left: 0;
 	right: 0;
 	bottom: 0;
 }
 
-header div h1 {
+@media only screen and (min-width: 801px) {
+	header > div.title {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+header > div.title > h1 {
 	font-size: 2.57em;
 	margin: 0;
+}
+
+header > div.title > ul {
+	list-style-type: none;
+	padding:0;
+	margin-bottom:0.7143em;
+}
+
+header > div.title > ul > li:last-child {
+	padding-top: 4px;
 }
 
 @media only screen and (min-width: 1041px) {

@@ -7,7 +7,7 @@
         
         {{ if .Params.categories }}
         <li>
-            분류 : 
+            <span>분류 : </span>
             <em>
                 {{ range $i, $c := .Params.categories }}
                     {{ if $i }}, {{ end }}
@@ -19,7 +19,7 @@
 
         {{ if .Params.tags }}
         <!-- <li> -->
-            / 태그 :
+            <span>/ 태그 :</span>
             <em>
                 {{ range $i, $t := .Params.tags }}
                     {{ if $i }}, {{ end }}

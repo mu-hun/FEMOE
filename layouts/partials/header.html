@@ -1,40 +1,24 @@
 {{ if .IsHome }}
-	{{ range $index, $page := where .Site.RegularPages "Section" "in" .Site.Params.mainSections }}
-	{{if eq $index 0}}
-	{{ if .Params.image }}
-	<a href="{{ .Permalink }}" title="{{ .Title }}">
-		<header class="main" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{ .Params.image }}');background-repeat: no-repeat;background-position: top;">
-	{{ else }}
+	{{ range first 1 (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
+		{{ if .Params.image }}
+	<a class="main" href="{{ .Permalink }}" title="{{ .Title }}">
+	{{ partial "header-bg" . }}
+		{{ else }}
 	<header class="no-bg">
-	{{ end }}
-		<div class="title">
-			<h1>{{ .Title | markdownify }}</h1>
-			<ul style="list-style-type: none; padding:0; margin-bottom:0.7143em;">
-				<li><time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "1월 2일, 2006년"}}</time> / 🕑 {{ .ReadingTime }}분 내로 읽음</li>
-				<li style="padding-top: 4px">{{ with .Params.description }} {{ . | markdownify }} {{ end }} </li>
-			</ul>
-		</div>
+		{{ end }}
+	{{ partial "header-contents" . }}
 	</header>
 	</a>
-		{{ end }}
 	{{ end }}
-	{{ else }}
-	{{ if .Params.image }}
-	<header id="contain-bg" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{ $.Params.image }}');background-size: cover;
-	background-repeat: no-repeat;
-	background-position: {{ .Params.position | default "center" }} ;">
-	{{ else }}
+{{ else }}
+{{ if .Params.image }}
+{{ partial "header-bg" . }}
+{{ else }}
 	<header class="no-bg">
-	{{ end }}
-		<a class="mobile-chevron-left" href="{{ relURL "/" }}">
-			<span class="mdil mdi-light mdil-chevron-left"></span>
-		</a>
-		<div class="title">
-			<h1>{{ .Title | markdownify }}</h1>
-			<ul style="list-style-type: none; padding:0; margin-bottom:0.7143em;">
-				<li><time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "1월 2일, 2006년"}}</time> / 🕑 {{ .ReadingTime }}분 내로 읽음 </li>
-				<li style="padding-top: 4px">{{ with .Params.description }} {{ . | markdownify }} {{ end }} </li>
-			</ul>
-		</div>
-	</header>
+{{ end }}
+	<a class="mobile-chevron-left" href="{{ relURL "/" }}">
+		<span class="mdil mdi-light mdil-chevron-left"></span>
+	</a>
+	{{ partial "header-contents" . }}
+</header>
 {{ end }}

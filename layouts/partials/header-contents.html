@@ -1,0 +1,7 @@
+<div class="title">
+	<h1>{{ .Title | markdownify }}</h1>
+	<ul>
+		<li><time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">{{ .Date.Format "1월 2일, 2006년"}}</time> <span>/ 🕑 {{ .ReadingTime }}분 내로 읽음</span></li>
+		<li><span>{{ .Params.description }}</span></li>
+	</ul>
+</div>

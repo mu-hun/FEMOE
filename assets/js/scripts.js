@@ -1,54 +1,66 @@
 if (!(/*@cc_on!@*/false || !!document.documentMode) && !!window.StyleMedia) {
-    document.body.classList.add('.win');
+    document.body.classList.toggle('.win');
 }
 
 (function () {
-    // Don't ever inject Disqus on localhost--it creates unwanted
-    // discussions from 'localhost:1313' on your Disqus account...
+	// partials mobile.html - bottom app bar
+	const bottom_app_bar = document.querySelector('.bottom-app-bar')
+	const bottom_app_bar_menu = document.querySelector('.mdil-menu')
+	const bottom_app_drawer = document.querySelector('.bottom-app-drawer')
+	const bottom_app_bar_fab = document.querySelector('.bottom-app-bar__fab')
+
+	let preScroll = window.pageYOffset;
+	let currentScroll = null;
+	window.onscroll = function() {
+		currentScroll = window.pageYOffset;
+		if (preScroll > currentScroll) {
+			bottom_app_bar.style.bottom = "0";
+		} else {
+			bottom_app_bar.style.bottom = "-84px";
+		}
+		if (document.querySelector('.is-shadow')) {
+			bottom_app_bar_menu.click()
+		}
+		preScroll = currentScroll;
+	}
+
+	bottom_app_bar_menu.addEventListener('click', function() {
+		bottom_app_drawer.classList.toggle('is-hidden');
+		document.querySelector('main').classList.toggle('is-shadow');
+	});
+
+	// TODO: Add scroll down event to 
+	/*if (document.querySelector('.is-shadow')) {
+		document.querySelector('main').addEventListener('touchestart', function() {
+			bottom_app_bar_menu.click()
+		})
+	}*/
+	bottom_app_bar_fab.addEventListener('click', function scrollToTop() {
+		window.scrollBy(0, -50);
+		if (document.documentElement.scrollTop > 0) {
+			setInterval(scrollToTop(), 10);
+		}
+	})
+
+
+	// Do not run below code at localhost
+
     if (window.location.hostname == "localhost")
          return;
 
-	var disqus_loaded = false;
-
-	// TODO: comments show/hide button
-    // var disqus_shortname = '{{ .Site.DisqusShortname }}';
-    // var disqus_button = document.getElementById("show-comments");
-
-    // disqus_button.style.display = "";
-    // disqus_button.addEventListener("click", disqus, false);
-
-    function disqus() {
-
-          if (!disqus_loaded) {
-                disqus_loaded = true;
-
-                var e = document.createElement("script");
-                e.type = "text/javascript";
-                e.async = true;
-                e.src = "//" + '{{ .Site.DisqusShortname }}' + ".disqus.com/embed.js";
-                (document.getElementsByTagName("head")[0] ||
-                      document.getElementsByTagName("body")[0])
-                .appendChild(e);
-
-                //Hide the button after opening
-                document.getElementById("show-comments").style.display = "none";
-          }
-    }
-
-    //Opens comments when linked to directly
-    var hash = window.location.hash.substr(1);
-    if (hash.length > 8) {
-          if (hash.substring(0, 8) == "comment-") {
-                disqus();
-          }
-    }
-
-    //Remove this is you don't want to load comments for search engines
-    if (/bot|google|baidu|bing|msn|duckduckgo|slurp|yandex/i.test(navigator.userAgent)) {
-          disqus();
-	}
+	// Google Analytics
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
 	gtag('config', '{{ .Site.googleAnalytics }}');
+	
+	// Disqus
+	var disqus_loaded = false;
+
+    var e = document.createElement("script");
+    e.type = "text/javascript";
+    e.async = true;
+    e.src = "//" + '{{ .Site.DisqusShortname }}' + ".disqus.com/embed.js";
+    document.getElementsByTagName("body")[0]
+    .appendChild(e);
 })();
