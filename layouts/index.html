@@ -6,7 +6,7 @@
 	<ul>
 		<li style="overflow: auto">
 			{{ if $page.Params.image }}
-				<a href="{{ .Permalink }}"><img alt="{{ .Title }}" src="{{ $page.Params.image }}" /></a>
+				<a href="{{ .Permalink }}"><img alt="{{ .Title }}" title="{{ .Title }}" src="{{ $page.Params.image }}" /></a>
 				<!-- <img alt="{{ .Title }}" src="{{ $page.Params.image }}" /> -->
 			{{ end }}
 			<h2><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
