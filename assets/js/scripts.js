@@ -7,7 +7,6 @@ if (!(/*@cc_on!@*/false || !!document.documentMode) && !!window.StyleMedia) {
 	const bottom_app_bar = document.querySelector('.bottom-app-bar')
 	const bottom_app_bar_menu = document.querySelector('.mdil-menu')
 	const bottom_app_drawer = document.querySelector('.bottom-app-drawer')
-	const bottom_app_bar_fab = document.querySelector('.bottom-app-bar__fab')
 
 	let preScroll = window.pageYOffset;
 	let currentScroll = null;
@@ -35,12 +34,6 @@ if (!(/*@cc_on!@*/false || !!document.documentMode) && !!window.StyleMedia) {
 			bottom_app_bar_menu.click()
 		})
 	}*/
-	bottom_app_bar_fab.addEventListener('click', function scrollToTop() {
-		window.scrollBy(0, -50);
-		if (document.documentElement.scrollTop > 0) {
-			setInterval(scrollToTop(), 10);
-		}
-	})
 
 
 	// Do not run below code at localhost
