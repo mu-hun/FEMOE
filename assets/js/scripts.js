@@ -3,39 +3,6 @@ if (!(/*@cc_on!@*/false || !!document.documentMode) && !!window.StyleMedia) {
 }
 
 (function () {
-	// partials mobile.html - bottom app bar
-	const bottom_app_bar = document.querySelector('.bottom-app-bar')
-	const bottom_app_bar_menu = document.querySelector('.mdil-menu')
-	const bottom_app_drawer = document.querySelector('.bottom-app-drawer')
-
-	let preScroll = window.pageYOffset;
-	let currentScroll = null;
-	window.onscroll = function() {
-		currentScroll = window.pageYOffset;
-		if (preScroll > currentScroll) {
-			bottom_app_bar.style.bottom = "0";
-		} else {
-			bottom_app_bar.style.bottom = "-84px";
-		}
-		if (document.querySelector('.is-shadow')) {
-			bottom_app_bar_menu.click()
-		}
-		preScroll = currentScroll;
-	}
-
-	bottom_app_bar_menu.addEventListener('click', function() {
-		bottom_app_drawer.classList.toggle('is-hidden');
-		document.querySelector('main').classList.toggle('is-shadow');
-	});
-
-	// TODO: Add scroll down event to 
-	/*if (document.querySelector('.is-shadow')) {
-		document.querySelector('main').addEventListener('touchestart', function() {
-			bottom_app_bar_menu.click()
-		})
-	}*/
-
-
 	// Do not run below code at localhost
 
     if (window.location.hostname == "localhost")
