@@ -1,7 +1,7 @@
 {{ if .IsHome }}
 	{{ range first 1 (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
-		{{ if .Params.image }}
 	<a class="main" href="{{ .Permalink }}" title="{{ .Title }}">
+		{{ if .Params.image }}
 	{{ partial "header-bg" . }}
 		{{ else }}
 	<header class="no-bg">
