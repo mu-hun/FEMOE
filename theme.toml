@@ -3,7 +3,7 @@
 
 name = "FEMOE"
 license = "MIT"
-licenselink = "https://github.com/BetaF1sh/FEMOE/blob/master/LICENSE"
+licenselink = "https://github.com/x86chi/FEMOE/blob/master/LICENSE"
 description = "A simple theme for hugo. You can see preview at https://www.frontend.moe"
 homepage = "http://www.frontend.moe/"
 tags = []
