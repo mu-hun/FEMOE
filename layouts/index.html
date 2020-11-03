@@ -1,21 +1,29 @@
+{{ define "partials/main-wrapper" }}
+	<section id="home">
+		<ul>
+			<li style="overflow: auto">
+				{{ if .Params.image }}
+					<a href="{{ .Permalink }}"><img alt="{{ .Title }}" title="{{ .Title }}" 	src="{{ .Params.image }}" /></a>
+				{{ end }}
+				<h2><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
+				{{ partial "aside" . }}
+				<p> {{ .Description }} </p>
+			</li>
+		</ul>
+	</section>
+{{ end }}
+
 {{ define "main" }}
 
-{{ range $index, $page := where .Site.RegularPages "Section" "in" .Site.Params.mainSections }}
-	{{if not (eq $index 0) }}
-<section id="home">
-	<ul>
-		<li style="overflow: auto">
-			{{ if $page.Params.image }}
-				<a href="{{ .Permalink }}"><img alt="{{ .Title }}" title="{{ .Title }}" src="{{ $page.Params.image }}" /></a>
-				<!-- <img alt="{{ .Title }}" src="{{ $page.Params.image }}" /> -->
-			{{ end }}
-			<h2><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h2>
-			{{ partial "aside" . }}
-			<p> {{ .Description }} </p>
-		</li>
-		{{ end }}
-	{{ end }}
-	</ul>
-</section>
+{{ $PageNumber := .Paginator.PageNumber }}
 
+{{ range $index, $page := where .Paginator.Pages "Type" "posts" }}
+		{{ $firstPage := and (eq $PageNumber 1) (not (eq $index 0)) }}
+		{{ $otherPage := not (eq $PageNumber 1) }}
+		{{ if or $otherPage $firstPage }}
+			{{ partial "main-wrapper" . }}
+		{{ end }}
+	{{end }}
+
+	{{ template "_internal/pagination.html" . }}
 {{ end }}

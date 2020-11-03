@@ -1,24 +1,27 @@
-{{ if .IsHome }}
-	{{ range first 1 (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}
-	<a class="main" href="{{ .Permalink }}" title="{{ .Title }}">
-		{{ if .Params.image }}
-	{{ partial "header-bg" . }}
-		{{ else }}
-	<header class="no-bg">
-		{{ end }}
-	{{ partial "header-contents" . }}
-	</header>
-	</a>
+{{ define "partials/header-wrapper" }}
+	{{ if .Params.image }}
+		{{ partial "header-bg" . }}
+	{{ else }}
+		<header class="no-bg">
 	{{ end }}
-{{ else }}
-{{ if .Params.image }}
-{{ partial "header-bg" . }}
-{{ else }}
-	<header class="no-bg">
-{{ end }}
-	<a class="mobile-chevron-left" href="{{ relURL "/" }}">
-		<span class="mdil mdi-light mdil-chevron-left"></span>
-	</a>
 	{{ partial "header-contents" . }}
-</header>
+		</header>
+{{ end }}
+
+{{ if .IsPage }}
+		{{ partial "header-wrapper" . }}
+{{ end }}
+
+
+{{ if .IsHome }}
+	{{ if (eq .Paginator.PageNumber 1) }}
+	{{/*  hack: first article is about page  */}}
+		{{ range first 2 (.Paginator.Pages) }}
+			{{ if (eq .Page.Type "posts") }}
+				<a class="main" href="{{ .Permalink }}" title="{{ .Title }}">
+					{{ partial "header-wrapper" . }}
+				</a>
+			{{ end }}
+		{{ end }}
+	{{ end }}
 {{ end }}
