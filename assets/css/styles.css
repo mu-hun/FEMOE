@@ -383,6 +383,15 @@ a {
   }
 }
 
+@media screen and (min-width: 700px) {
+  figure.half {
+    text-align: center;
+  }
+  figure.half > img {
+    width: 60%;
+  }
+}
+
 /* figure */
 
 figure {
