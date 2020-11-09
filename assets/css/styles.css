@@ -542,12 +542,17 @@ header > div.title > ul > li:last-child {
 }
 
 @media only screen and (max-width: 1040px) {
-  .mobile-chevron-left {
+  .mobile-back {
     background-color: transparent;
     border: none;
     padding: 0;
 	margin: 1.2em;
     cursor: pointer;
+  }
+  .mobile-back > svg {
+	  fill: white;
+	  width: 2em;
+	  height: 2em;
   }
 }
 
@@ -634,4 +639,11 @@ header > div.title > ul > li:last-child {
 
 .menu > a > #nav-site-title {
 	margin: 0 auto 5px;
+}
+
+#desktop-back > svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: sub;
+	fill: black;
 }
