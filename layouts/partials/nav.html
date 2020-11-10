@@ -6,7 +6,7 @@
 	</a>
 	<div class="sub">
 		{{ if .IsPage }}
-		<a id="desktop-back" href="{{ relURL "/" }}">
+		<a id="desktop-back" name="back" href="{{ relURL "/" }}">
 			{{ partial "back-icon" . }}</a> | {{ end }}
 		{{ range .Site.Menus.main }}
 		<a class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}active{{end}}" href="{{.URL}}">

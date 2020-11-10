@@ -14,7 +14,7 @@
 	{{ else }}
 		<header class="no-bg">
 	{{ end }}
-	<button class="mobile-back" onclick="location.href='{{ relURL "/" }}'">
+	<button name="back" class="mobile-back" onclick="location.href='{{ relURL "/" }}'">
 		{{ partial "back-icon" . }}
 	</button>
 	{{ partial "header-contents" . }}
