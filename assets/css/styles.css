@@ -647,3 +647,19 @@ header > div.title > ul > li:last-child {
 	vertical-align: sub;
 	fill: black;
 }
+
+abbr, abbr[title] {
+  text-decoration: none;
+}
+abbr:after {
+  margin-left: -0.2em;
+  content: " (" attr(title) ")";
+  color: gray;
+  font-size: smaller;
+  font-weight: normal;
+}
+
+dfn {
+  font-style: normal;
+  font-weight: bolder;
+}
