@@ -222,6 +222,7 @@ aside,
 }
 
 #container main article pre code {
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
   margin: 0;
   padding: 0;
   white-space: pre;
@@ -231,7 +232,7 @@ aside,
 }
 
 #container main article p code {
-  font-family: "Fira Code";
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
   margin: 0 2px;
   padding: 0 5px;
   white-space: nowrap;
